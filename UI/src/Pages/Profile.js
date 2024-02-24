@@ -4,10 +4,15 @@ import React, { Fragment, useState } from 'react';
 import { profileFormList } from '../helper/profile-data';
 import CustomSelect from '../Components/CustomSelect';
 import '../Styles/Profile.css';
+import { useNavigate } from 'react-router-dom';
 
 function Profile() {
   // const [isValidEmail, setIsValidEmail] = useState(false);
 
+  const navigate = useNavigate();
+  const goToDashboard = () => {
+    navigate('/');
+  };
   const [inputs, setInputs] = useState({
     openToWork: true,
     baselocation: '',
@@ -100,7 +105,9 @@ function Profile() {
           })}
           <div className="buttonContainer">
             <input type="submit" className="submitButton" />
-            <button className="cancelButton">Cancel</button>
+            <button className="cancelButton" onClick={goToDashboard}>
+              Cancel
+            </button>
           </div>
         </form>
       </Box>
