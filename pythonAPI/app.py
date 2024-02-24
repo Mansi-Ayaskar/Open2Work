@@ -2,10 +2,12 @@ import json
 from flask import Flask, jsonify, request
 from flask_mysqldb import MySQL
 from flask_mail import Mail, Message
+from flask_cors import CORS, cross_origin
+
 from config import Config
 
 app = Flask(__name__)
-
+cors = CORS(app)
 app.config.from_object(Config)
 
 mysql = MySQL(app)
@@ -13,12 +15,14 @@ mail = Mail(app)
 
 
 @app.route('/')
+@cross_origin()
 def hello():
 
     return "Hello Employees!"
 
 
 @app.route("/send_mail", methods=['POST'])
+@cross_origin()
 def index():
     msg = Message(
         'Hello',
@@ -31,6 +35,7 @@ def index():
 
 
 @app.route('/getAllRegisteredEmployees', methods=['GET'])
+@cross_origin()
 def get_employee_by_param():
     cursor = mysql.connection.cursor()
     options = request.args.to_dict()
@@ -65,6 +70,7 @@ def get_employee_by_param():
 
 
 @app.route('/registerEmployee', methods=['POST'])
+@cross_origin()
 def create_employee():
     """
     Create a new employee.
@@ -79,10 +85,12 @@ def create_employee():
          employee['open2work'], employee['key_skills']))
     mysql.connection.commit()
     cursor.close()
+
     return jsonify({'message': 'Employee created successfully'})
 
 
 @app.route('/updateEmployeeDetail/<string:email>', methods=['PUT'])
+@cross_origin()
 def update_employee(email: str):
     """
     Update an existing employee.
@@ -112,6 +120,7 @@ def update_employee(email: str):
 
 
 @app.route('/deleteEmployeeDetail/<string:email>', methods=['DELETE'])
+@cross_origin()
 def delete_employee(email: str):
     """
     Delete an employee.
@@ -122,5 +131,5 @@ def delete_employee(email: str):
     cursor.close()
     return jsonify({'message': 'Employee deleted successfully'})
 
-
 app.run(host='10.53.103.204', port=5000)
+# app.run(host='localhost', port=5000)
