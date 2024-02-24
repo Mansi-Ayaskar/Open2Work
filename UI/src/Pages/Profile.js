@@ -3,6 +3,7 @@ import { Box } from '@mui/system';
 import React, { Fragment, useState } from 'react';
 import { profileFormList } from '../helper/profile-data';
 import CustomSelect from '../Components/CustomSelect';
+import '../Styles/Profile.css';
 
 function Profile() {
   const [isValidEmail, setIsValidEmail] = useState(false);
@@ -17,7 +18,7 @@ function Profile() {
     if (event.target.name === 'email') {
       setIsValidEmail(event.target.value.includes('@persistent.com'));
     } else {
-      setIsValidEmail(true);
+      setIsValidEmail(false);
     }
     setInputs((values) => ({
       ...values,
@@ -31,39 +32,36 @@ function Profile() {
   };
 
   return (
-    <div>
-      <h1 style={{ textAlign: 'center' }}>Share your Profile</h1>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          flexDirection: 'column'
-        }}
-      >
+    <div className="profileContainer">
+      <p className="formHeader">Share your Profile</p>
+      <Box className="boxContainer">
         <form
           onSubmit={handleSubmit}
+          className="formContainer"
           style={{ display: 'flex', flexDirection: 'column' }}
         >
           {profileFormList.map((formData) => {
             if (formData.type === 'dropdown') {
               return (
-                <Fragment key={formData.id}>
-                  <InputLabel>{formData.label}</InputLabel>
-                  <CustomSelect
-                    name={formData.id}
-                    value={inputs[formData.id]}
-                    onChange={handleChange}
-                    items={formData.items}
-                    isMulti={formData.isMultiSelect}
-                  />
-                </Fragment>
+                // <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+                //   <InputLabel>{formData.label}</InputLabel>
+                <CustomSelect
+                  label={formData.label}
+                  name={formData.id}
+                  value={inputs[formData.id]}
+                  onChange={handleChange}
+                  items={formData.items}
+                  isMulti={formData.isMultiSelect}
+                />
+                // </FormControl>
+                // <div key={formData.id} className="dropdown">
+                // </div>
               );
             } else if (formData.type === 'checkbox') {
               return (
-                <Fragment key={formData.id}>
-                  <InputLabel>{formData.label}</InputLabel>
+                <div className="openToWorkContainer" key={formData.id}>
                   <Checkbox
+                    className="checkBox"
                     name={formData.id}
                     checked={inputs[formData.id]}
                     onChange={(e) =>
@@ -73,11 +71,15 @@ function Profile() {
                       }))
                     }
                   />
-                </Fragment>
+                  <InputLabel className="openToWorkLabel">
+                    {formData.label}
+                  </InputLabel>
+                </div>
               );
             }
             return (
               <TextField
+                className="textFiled"
                 key={formData.id}
                 id={formData.id}
                 type={formData.type ?? 'text'}
@@ -95,8 +97,7 @@ function Profile() {
               />
             );
           })}
-
-          <input type="submit" />
+          <input type="submit" className="submitButton" />
         </form>
       </Box>
     </div>

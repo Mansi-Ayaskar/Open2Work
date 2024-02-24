@@ -9,30 +9,31 @@ import TableRow from '@mui/material/TableRow';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import { styled } from '@mui/material/styles';
 import '../Styles/Table.css';
+import ReactTooltip from './ReactTooltip.js';
 
 const columns = [
-  { id: 'name', label: 'Name'},
-  { id: 'email', label: 'Email'},
+  { id: 'name', label: 'Name' },
+  { id: 'email', label: 'Email' },
   {
     id: 'currentLocation',
     label: 'Current Location',
-    align: 'center',
+    align: 'center'
   },
   {
     id: 'preferredLocation',
     label: 'Preferred Location',
-    align: 'center',
+    align: 'center'
   },
   {
     id: 'yoe',
     label: 'YOE',
-    align: 'center',
+    align: 'center'
   },
   {
     id: 'skills',
     label: 'Skills',
-    align: 'center',
-  },
+    align: 'center'
+  }
 ];
 
 export default function StickyHeadTable(props) {
@@ -52,76 +53,98 @@ export default function StickyHeadTable(props) {
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-      backgroundColor:'#EDF2F7',
+      backgroundColor: '#EDF2F7',
       fontWeight: 'bold'
     },
     [`&.${tableCellClasses.body}`]: {
-      fontSize: 14,
-    },
+      fontSize: 14
+    }
   }));
-  
+
   const StyledTableRow = styled(TableRow)(({ theme }) => ({
     '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.action.hover,
+      backgroundColor: theme.palette.action.hover
     },
     // hide last border
     '&:last-child td, &:last-child th': {
-      border: 0,
-    },
+      border: 0
+    }
   }));
 
   return (
     <>
-    <Paper className='tablePaperContainer'>
-      <TableContainer sx={{ maxHeight: 310 }}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead className='tableHead'>
-            <TableRow>
-              {columns.map((column) => (
-                <StyledTableCell
-                  key={column.id}
-                  align={column.align}
-                >
-                  {column.label}
-                </StyledTableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
-                return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
-                    {columns.map((column) => {
-                      let value = row[column.id];
-                      if (Array.isArray(value)) {
-                        value = value.join(", ");
-                      }
-                      return (
-                        <StyledTableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === 'number'
-                            ? column.format(value)
-                            : value}
-                        </StyledTableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
-    </Paper>
+      <Paper className="tablePaperContainer">
+        <TableContainer sx={{ maxHeight: 370 }}>
+          <Table stickyHeader aria-label="sticky table">
+            <TableHead className="tableHead">
+              <TableRow>
+                {columns.map((column) => (
+                  <StyledTableCell key={column.id} align={column.align}>
+                    {column.label}
+                  </StyledTableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((row) => {
+                  return (
+                    <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
+                      {columns.map((column) => {
+                        let value = row[column.id];
+                        if (Array.isArray(value)) {
+                          value = value.join(', ');
+                        }
+                        // return (
+                        //   <StyledTableCell key={column.id} align={column.align}>
+                        //     {column.format && typeof value === 'number'
+                        //       ? column.format(value)
+                        //       : value}
+                        //   </StyledTableCell>
+                        // );
+                        if (typeof value == 'string' && value.includes(',')) {
+                          // console.log(value);
+                          return (
+                            <StyledTableCell
+                              key={column.id}
+                              align={column.align}
+                            >
+                              {/* {column.format && typeof value === 'number'
+                                ? column.format(value)
+                                : value} */}
+                              <ReactTooltip text={value} />
+                            </StyledTableCell>
+                          );
+                        } else {
+                          return (
+                            <StyledTableCell
+                              key={column.id}
+                              align={column.align}
+                            >
+                              {column.format && typeof value === 'number'
+                                ? column.format(value)
+                                : value}
+                            </StyledTableCell>
+                          );
+                        }
+                      })}
+                    </TableRow>
+                  );
+                })}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[10, 25, 100]}
+          component="div"
+          count={rows.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+      </Paper>
     </>
   );
 }
