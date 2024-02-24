@@ -18,8 +18,8 @@ const Filters = () => {
     return (
         <div className="filterContainer">
             <div className='headerContainer'>
-                <p className='headerTitle'>Your talent search simplified !</p>
-                <p className='headerSubTitle'>Dream, Create, Collaborate, Your next project Awaits !</p>
+                {/* <p className='headerTitle'>Your talent search simplified !</p> */}
+                {/* <p className='headerTitle'>Dream, Create, Collaborate, Your next project Awaits !</p> */}
             </div>
             <div className='fliters'>
                 <SearchIcon className="icon"/>
