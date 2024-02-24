@@ -1,0 +1,19 @@
+.tooltip {
+  visibility: hidden;
+  position: absolute;
+  background-color: #f5f5f5;
+  color: black;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+  width: 120px; /* Adjust the width as needed */
+  /* Position the tooltip */
+  top: 100%; /* Display the tooltip above the element */
+  left: 50%;
+  transform: translateX(-50%); /* Center the tooltip horizontally */
+}
+
+.tooltip:hover {
+  visibility: visible;
+  opacity: 1;
+}

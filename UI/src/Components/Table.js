@@ -9,6 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import { styled } from '@mui/material/styles';
 import '../Styles/Table.css';
+import ReactTooltip from './ReactTooltip.js';
 
 const columns = [
   { id: 'name', label: 'Name'},
@@ -40,7 +41,7 @@ function createData(name, email, currentLocation, preferredLocation, yoe, skills
 }
 
 const rows = [
-  createData('XYZ', 'XYZ@persistent.com', 'Pune','Pune', 10, 'Html, css, js, react'),
+  createData('XYZ', 'XYZ@persistent.com', 'Pune','Pune', 10, 'Html, css'),
   createData('XYZ', 'XYZ@persistent.com','Pune', 'Pune', 10, 'Html, css, js, react'),
   createData('XYZ', 'XYZ@persistent.com','Pune', 'Pune', 10, 'Html, css, js, react'),
   createData('XYZ', 'XYZ@persistent.com','Pune', 'Pune', 10, 'Html, css, js, react'),
@@ -115,13 +116,26 @@ export default function StickyHeadTable() {
                   <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
                     {columns.map((column) => {
                       const value = row[column.id];
-                      return (
-                        <StyledTableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === 'number'
-                            ? column.format(value)
-                            : value}
-                        </StyledTableCell>
-                      );
+                      if(typeof value == 'string' && value.includes(',')) {
+                        // console.log(value);
+                        return (
+                          <StyledTableCell key={column.id} align={column.align}>
+                            {/* {column.format && typeof value === 'number'
+                              ? column.format(value)
+                              : value} */}
+                            <ReactTooltip text={value}/>
+                          </StyledTableCell>
+                        );
+                      }
+                      else {
+                        return (
+                          <StyledTableCell key={column.id} align={column.align}>
+                            {column.format && typeof value === 'number'
+                              ? column.format(value)
+                              : value}
+                          </StyledTableCell>
+                        );
+                      }
                     })}
                   </TableRow>
                 );
