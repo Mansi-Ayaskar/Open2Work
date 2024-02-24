@@ -2,8 +2,8 @@ class Config:
     # MySQL configurations
     MYSQL_HOST = 'localhost'
     MYSQL_USER = 'root'
-    MYSQL_PASSWORD = 'root'
-    MYSQL_DB = 'semicolons'
+    MYSQL_PASSWORD = ''
+    MYSQL_DB = 'open2work'
 
     # Mail configurations
     MAIL_SERVER = 'smtp.gmail.com'

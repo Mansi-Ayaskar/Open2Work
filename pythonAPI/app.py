@@ -34,29 +34,20 @@ def index():
 def get_employee_by_param():
     cursor = mysql.connection.cursor()
     options = request.args.to_dict()
-    if not options:
-        cursor.execute("""SELECT * FROM employees""")
-        data = cursor.fetchall()
-        cursor.close()
-        employees = [
-            {'email': row[0], 'name': row[1], 'location': row[2], 'preferred_location': row[3], 'yrs_exp': row[4],
-             'open2work': row[5], 'key_skills': row[6]} for row in data]
-        return jsonify(employees)
-
-    where_conditions = []
+    select_query = f"SELECT * FROM employees WHERE open2work = 1"
     values = []
-    for key, value in options.items():
-        if key == 'key_skills':
-            where_conditions.append(f"{key} LIKE %s")
-            values.append(f"%{value}%")
-        else:
-            where_conditions.append(f"{key} = %s")
-            values.append(value)
-
-    where_clause = "open2work=1 AND ".join(where_conditions)
-
-    select_query = f"SELECT * FROM employees WHERE {where_clause}"
-
+    if options:        
+        where_conditions = []        
+        for key, value in options.items():
+            if key == 'key_skills':
+                where_conditions.append(f"{key} LIKE %s")
+                values.append(f"%{value}%")
+            else:
+                where_conditions.append(f"{key} = %s")
+                values.append(value)
+        where_clause = " AND ".join(where_conditions)
+        select_query = f"{select_query} and {where_clause}"
+    
     cursor.execute(select_query, tuple(values))
     data = cursor.fetchall()
     cursor.close()
@@ -132,4 +123,4 @@ def delete_employee(email: str):
     return jsonify({'message': 'Employee deleted successfully'})
 
 
-app.run(host='localhost', port=5000)
+app.run(host='10.53.103.204', port=5000)
