@@ -1,0 +1,79 @@
+.profileContainer {
+  width: 500px;
+  background-color: #ffffff;
+  margin: 14px auto 10px auto;
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 1.8px -2px rgba(0, 0, 0, 0.5);
+}
+
+.formHeader {
+  font-size: 25px;
+  text-align: center;
+  margin: 0px;
+  font-weight: bold;
+}
+
+.boxContainer {
+  display: 'flex';
+  justify-content: 'center';
+  align-items: 'center';
+  flex-direction: 'column';
+  width: 100%;
+}
+
+.formContainer {
+  margin: 10px;
+}
+
+.openToWorkContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.checkBox {
+  width: 0px;
+}
+
+.openToWorkLabel {
+  width: 30%;
+  margin-left: 10px;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.submitButton {
+  display: block;
+  width: 49%;
+  border: none;
+  border-radius: 12px;
+  background-color: #000000;
+  padding: 12px 12px;
+  font-size: 22px;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 10px;
+  color: White;
+  font-weight: 800px;
+}
+
+.cancelButton {
+  display: block;
+  width: 49%;
+  border: none;
+  border-radius: 12px;
+  background-color: #828282;
+  padding: 12px 25px;
+  font-size: 22px;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 10px;
+  color: White;
+  font-weight: 800px;
+}
