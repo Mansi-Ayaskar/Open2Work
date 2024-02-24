@@ -6,10 +6,6 @@ import rows from "../Data/JsonData";
 import "../Styles/Dashboard.css";
 
 const Dashboard = () => {
-    function createData(id, name, email, currentLocation, preferredLocation, yoe, skills) {
-        return { id, name, email, currentLocation, preferredLocation, yoe, skills };
-    }
-    
     const [filterText, setFilterText] = useState('');
 
     const filteredRows = rows.filter(row => {
