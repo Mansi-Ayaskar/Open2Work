@@ -1,5 +1,5 @@
 import json
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, make_response
 from flask_mysqldb import MySQL
 from flask_mail import Mail, Message
 from flask_cors import CORS, cross_origin
@@ -7,12 +7,11 @@ from flask_cors import CORS, cross_origin
 from config import Config
 
 app = Flask(__name__)
-cors = CORS(app)
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 app.config.from_object(Config)
 
 mysql = MySQL(app)
 mail = Mail(app)
-
 
 @app.route('/')
 @cross_origin()
@@ -66,7 +65,11 @@ def get_employee_by_param():
                     'yrs_exp': row[4], 'open2work': row[5], 'key_skills': row[6]}
         employees.append(employee)
 
-    return jsonify(employees)
+    response = jsonify(employees)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', "*")
+    response.headers.add('Access-Control-Allow-Methods', "*")
+    return response
 
 
 @app.route('/registerEmployee', methods=['POST'])
