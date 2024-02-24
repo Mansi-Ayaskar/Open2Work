@@ -1,4 +1,8 @@
-.tableContainer {
+.tablePaperContainer {
     margin: 20px;
-    overflow: hidden;
+}
+
+.tableHead {
+    height: 20px;
+    background-color: #EDF2F7 !important;
 }
