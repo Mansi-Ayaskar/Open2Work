@@ -6,20 +6,19 @@ import CustomSelect from '../Components/CustomSelect';
 import '../Styles/Profile.css';
 
 function Profile() {
-  const [isValidEmail, setIsValidEmail] = useState(false);
+  // const [isValidEmail, setIsValidEmail] = useState(false);
 
   const [inputs, setInputs] = useState({
-    openToWork: false,
-    skills: [],
+    openToWork: true,
     baselocation: '',
     preferredlocation: ''
   });
   const handleChange = (event) => {
-    if (event.target.name === 'email') {
-      setIsValidEmail(event.target.value.includes('@persistent.com'));
-    } else {
-      setIsValidEmail(false);
-    }
+    // if (event.target.name === 'email') {
+    //   setIsValidEmail(event.target.value.includes('@persistent.com'));
+    // } else {
+    //   setIsValidEmail(false);
+    // }
     setInputs((values) => ({
       ...values,
       [event.target.name]: event.target.value
@@ -52,6 +51,7 @@ function Profile() {
                   onChange={handleChange}
                   items={formData.items}
                   isMulti={formData.isMultiSelect}
+                  key={formData.id}
                 />
                 // </FormControl>
                 // <div key={formData.id} className="dropdown">
@@ -88,16 +88,20 @@ function Profile() {
                 variant="standard"
                 value={inputs[formData.id] || ''}
                 onChange={handleChange}
-                error={formData.type === 'email' ? !isValidEmail : false}
-                helperText={
-                  formData.type === 'email'
-                    ? 'Incorrect email. Please enter Persistent email id.'
-                    : 'Enter valid input'
-                }
+                style={{ marginTop: 20 }}
+                // error={formData.type === 'email' ? !isValidEmail : false}
+                // helperText={
+                //   formData.type === 'email'
+                //     ? 'Incorrect email. Please enter Persistent email id.'
+                //     : 'Enter valid input'
+                // }
               />
             );
           })}
-          <input type="submit" className="submitButton" />
+          <div className="buttonContainer">
+            <input type="submit" className="submitButton" />
+            <button className="cancelButton">Cancel</button>
+          </div>
         </form>
       </Box>
     </div>
