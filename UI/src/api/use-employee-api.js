@@ -1,10 +1,9 @@
 import axiosClient from './api-service';
 
-const getRegisteredEmployees = () => {
-  return axiosClient.get(
+export const getRegisteredEmployees = async () => {
+  const res = await axiosClient.get(
     // 'getAllRegisteredEmployees?key_skills=java&location=Ahmedabad'
     'getAllRegisteredEmployees'
   );
+  return await res.data;
 };
-
-export { getRegisteredEmployees };

@@ -3,9 +3,9 @@ import { getRegisteredEmployees } from '../api/use-employee-api';
 
 const useGetEmployees = () => {
   return useQuery({
-    queryKey: 'employees',
-    queryFn: getRegisteredEmployees(),
-    enabled: false
+    queryKey: ['employees'],
+    queryFn: async () => getRegisteredEmployees(),
+    enabled: true
   });
 };
 
