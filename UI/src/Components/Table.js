@@ -15,22 +15,22 @@ const columns = [
   { id: 'name', label: 'Name' },
   { id: 'email', label: 'Email' },
   {
-    id: 'currentLocation',
+    id: 'location',
     label: 'Current Location',
     align: 'center'
   },
   {
-    id: 'preferredLocation',
+    id: 'preferred_location',
     label: 'Preferred Location',
     align: 'center'
   },
   {
-    id: 'yoe',
+    id: 'yrs_exp',
     label: 'YOE',
     align: 'center'
   },
   {
-    id: 'skills',
+    id: 'key_skills',
     label: 'Skills',
     align: 'center'
   }
