@@ -4,9 +4,14 @@ import React, { Fragment, useState } from 'react';
 import { profileFormList } from '../helper/profile-data';
 import CustomSelect from '../Components/CustomSelect';
 import '../Styles/Profile.css';
-
+import { registerEmployee } from '../api/use-employee-api';
+import { useNavigate } from 'react-router-dom';
+import { useQueryClient } from '@tanstack/react-query';
+// Get QueryClient from the context
 function Profile() {
   // const [isValidEmail, setIsValidEmail] = useState(false);
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const [inputs, setInputs] = useState({
     openToWork: true,
@@ -28,6 +33,25 @@ function Profile() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log('inputs: ', inputs);
+    // employee['email'], employee['name'], employee['location'], employee['preferred_location'], employee['yrs_exp'],
+    //  employee['open2work'], employee['key_skills'])
+    let isOpenToWork = 0;
+    if (inputs['open2work']) {
+      isOpenToWork = 1;
+    }
+    registerEmployee({
+      email: inputs['email'],
+      name: inputs['fullname'],
+      location: inputs['baselocation'],
+      preferred_location: inputs['preferredlocation'],
+      open2work: isOpenToWork,
+      key_skills: inputs['skills'],
+      yrs_exp: Number(inputs['experience'])
+    }).then((res) => {
+      console.log('Res: ', res);
+      queryClient.invalidateQueries({ queryKey: ['employees'] });
+      navigate('/');
+    });
   };
 
   return (
