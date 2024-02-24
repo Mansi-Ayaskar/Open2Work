@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "../Styles/Filters.css";
 import SearchIcon from '@mui/icons-material/Search';
 import TextField from '@mui/material/TextField';
@@ -8,8 +8,15 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-const Filters = () => {
-    const [age, setAge] = React.useState('');
+const Filters = (props) => {
+    const [age, setAge] = useState('');
+    const [filterText, setFilterText] = useState('');
+
+    const handleChangeText = (event) => {
+        const val = event.target.value.toLowerCase();
+        setFilterText(val)
+        props.setFilterText(val);
+    }
 
     const handleChange = (event) => {
       setAge(event.target.value);
@@ -24,11 +31,11 @@ const Filters = () => {
             <div className='fliters'>
                 <SearchIcon className="icon"/>
                 {/* ------------Search bar----------------- */}
-                <TextField className="searchField" id="standard-basic" label="Search name, skills or any keyword ..." variant="standard" />
+                <TextField className="searchField" label="Search name, skills or any keyword ..." variant="standard" onChange={handleChangeText} />
                 <div className='vl'></div>
                 <LocationOnIcon className="icon"/>
                 {/* ---------Dropdown------------ */}
-                <FormControl className='locationDropdown' variant="standard" sx={{ m: 1, minWidth: 120 }}>
+                <FormControl className='locationDropdown' variant="standard" sx={{ minWidth: 120 }}>
                     <InputLabel id="demo-simple-select-standard-label">Age</InputLabel>
                     <Select
                     labelId="demo-simple-select-standard-label"

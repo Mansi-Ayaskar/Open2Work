@@ -35,29 +35,9 @@ const columns = [
   },
 ];
 
-function createData(name, email, currentLocation, preferredLocation, yoe, skills) {
-  return { name, email, currentLocation, preferredLocation, yoe, skills };
-}
+export default function StickyHeadTable(props) {
+  const rows = props.rows;
 
-const rows = [
-  createData('XYZ', 'XYZ@persistent.com', 'Pune','Pune', 10, 'Html, css, js, react'),
-  createData('XYZ', 'XYZ@persistent.com','Pune', 'Pune', 10, 'Html, css, js, react'),
-  createData('XYZ', 'XYZ@persistent.com','Pune', 'Pune', 10, 'Html, css, js, react'),
-  createData('XYZ', 'XYZ@persistent.com','Pune', 'Pune', 10, 'Html, css, js, react'),
-  createData('XYZ', 'XYZ@persistent.com', 'Pune','Pune', 10, 'Html, css, js, react'),
-  createData('XYZ', 'XYZ@persistent.com', 'Pune','Pune', 10, 'Html, css, js, react'),
-  createData('XYZ', 'XYZ@persistent.com','Pune', 'Pune', 10, 'Html, css, js, react'),
-  createData('XYZ', 'XYZ@persistent.com','Pune', 'Pune', 10, 'Html, css, js, react'),
-  createData('XYZ', 'XYZ@persistent.com', 'Pune','Pune', 10, 'Html, css, js, react'),
-  createData('XYZ', 'XYZ@persistent.com', 'Pune','Pune', 10, 'Html, css, js, react'),
-  createData('XYZ', 'XYZ@persistent.com', 'Pune','Pune', 10, 'Html, css, js, react'),
-  createData('XYZ', 'XYZ@persistent.com', 'Pune','Pune', 10, 'Html, css, js, react'),
-  createData('XYZ', 'XYZ@persistent.com', 'Pune','Pune', 10, 'Html, css, js, react'),
-  createData('XYZ', 'XYZ@persistent.com', 'Pune','Pune', 10, 'Html, css, js, react'),
-  createData('XYZ', 'XYZ@persistent.com', 'Pune', 'Pune', 10, 'Html, css, js, react'),
-];
-
-export default function StickyHeadTable() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -112,7 +92,7 @@ export default function StickyHeadTable() {
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                  <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (
