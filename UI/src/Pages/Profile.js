@@ -69,6 +69,12 @@ function Profile() {
                     className="checkBox"
                     name={formData.id}
                     checked={inputs[formData.id]}
+                    sx={{
+                      color: '#fd5f07',
+                      '&.Mui-checked': {
+                        color: '#fd5f07'
+                      }
+                    }}
                     onChange={(e) =>
                       setInputs((values) => ({
                         ...values,
@@ -82,6 +88,10 @@ function Profile() {
                 </div>
               );
             }
+            var limits = {};
+            if (formData.type == 'number') {
+              limits = { min: 0, max: 30 };
+            }
             return (
               <TextField
                 className="textFiled"
@@ -94,6 +104,7 @@ function Profile() {
                 value={inputs[formData.id] || ''}
                 onChange={handleChange}
                 style={{ marginTop: 20 }}
+                inputProps={{ ...limits }}
                 // error={formData.type === 'email' ? !isValidEmail : false}
                 // helperText={
                 //   formData.type === 'email'
