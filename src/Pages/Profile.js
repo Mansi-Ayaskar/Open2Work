@@ -5,6 +5,8 @@ import { profileFormList } from '../helper/profile-data';
 import CustomSelect from '../Components/CustomSelect';
 
 function Profile() {
+  const [isValidEmail, setIsValidEmail] = useState(false);
+
   const [inputs, setInputs] = useState({
     openToWork: false,
     skills: [],
@@ -12,6 +14,11 @@ function Profile() {
     preferredlocation: ''
   });
   const handleChange = (event) => {
+    if (event.target.name === 'email') {
+      setIsValidEmail(event.target.value.includes('@persistent.com'));
+    } else {
+      setIsValidEmail(true);
+    }
     setInputs((values) => ({
       ...values,
       [event.target.name]: event.target.value
@@ -79,6 +86,12 @@ function Profile() {
                 variant="standard"
                 value={inputs[formData.id] || ''}
                 onChange={handleChange}
+                error={formData.type === 'email' ? !isValidEmail : false}
+                helperText={
+                  formData.type === 'email'
+                    ? 'Incorrect email. Please enter Persistent email id.'
+                    : 'Enter valid input'
+                }
               />
             );
           })}
