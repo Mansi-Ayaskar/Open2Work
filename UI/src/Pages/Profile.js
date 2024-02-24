@@ -36,7 +36,7 @@ function Profile() {
     // employee['email'], employee['name'], employee['location'], employee['preferred_location'], employee['yrs_exp'],
     //  employee['open2work'], employee['key_skills'])
     let isOpenToWork = 0;
-    if (inputs['open2work']) {
+    if (inputs['openToWork']) {
       isOpenToWork = 1;
     }
     registerEmployee({
