@@ -1,62 +1,60 @@
-const skillsList = ["React", "Node", "React-Native"];
+// const skillsList = ["React", "Node", "React-Native"];
 const LocationList = [
-  "Ahmedabad",
-  "Bengaluru",
-  "Bhopal",
-  "Chennai",
-  "Goa",
-  "Gurugram",
-  "Hyderabad",
-  "Indore",
-  "Jaipur",
-  "Kochi",
-  "Kolkata",
-  "Lucknow",
-  "Mumbai",
-  "Nagpur",
-  "Noida",
-  "Pune",
+  'Ahmedabad',
+  'Bengaluru',
+  'Bhopal',
+  'Chennai',
+  'Goa',
+  'Gurugram',
+  'Hyderabad',
+  'Indore',
+  'Jaipur',
+  'Kochi',
+  'Kolkata',
+  'Lucknow',
+  'Mumbai',
+  'Nagpur',
+  'Noida',
+  'Pune'
 ];
 export const profileFormList = [
   {
-    id: "email",
-    label: "Email",
-    type: "email",
+    id: 'email',
+    label: 'Email',
+    type: 'email'
   },
   {
-    id: "fullname",
-    label: "Full Name",
-    type: "text",
+    id: 'fullname',
+    label: 'Full Name',
+    type: 'text'
   },
   {
-    id: "experience",
-    label: "Total Year of Experience",
-    type: "number",
+    id: 'experience',
+    label: 'Total Year of Experience',
+    type: 'number'
   },
   {
-    id: "baselocation",
-    label: "Base Location",
-    type: "dropdown",
+    id: 'baselocation',
+    label: 'Base Location',
+    type: 'dropdown',
     isMultiSelect: false,
-    items: LocationList,
+    items: LocationList
   },
   {
-    id: "preferredlocation",
-    label: "Preferred Location",
-    type: "dropdown",
+    id: 'preferredlocation',
+    label: 'Preferred Location',
+    type: 'dropdown',
     isMultiSelect: false,
-    items: LocationList,
+    items: LocationList
   },
   {
-    id: "skills",
-    label: "Skills",
-    type: "dropdown",
-    isMultiSelect: true,
-    items: skillsList,
+    id: 'skills',
+    label: 'Skills',
+    type: 'text'
   },
   {
-    id: "openToWork",
-    label: "open2Work",
-    type: "checkbox",
-  },
+    id: 'openToWork',
+    label: 'open2Work',
+    type: 'checkbox'
+  }
 ];

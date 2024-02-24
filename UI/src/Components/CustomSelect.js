@@ -5,7 +5,7 @@ import '../Styles/CustomSelect.css';
 
 const CustomSelect = ({ label, name, value, onChange, items, isMulti }) => {
   return (
-    <FormControl variant="standard" className="customSelect">
+    <FormControl variant="standard" style={{ marginTop: 20 }}>
       <InputLabel id="demo-simple-select-standard-label">{label}</InputLabel>
       <Select name={name} value={value} onChange={onChange} multiple={isMulti}>
         {items.map((item) => (
