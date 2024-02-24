@@ -18,18 +18,18 @@ const Filters = () => {
     return (
         <div className="filterContainer">
             <div className='headerContainer'>
-                <p className='headerTitle'>Your talent search simplified !</p>
-                <p className='headerSubTitle'>Dream, Create, Collaborate, Your next project Awaits !</p>
+                {/* <p className='headerTitle'>Your talent search simplified !</p> */}
+                {/* <p className='headerTitle'>Dream, Create, Collaborate, Your next project Awaits !</p> */}
             </div>
             <div className='fliters'>
                 <SearchIcon className="icon"/>
                 {/* ------------Search bar----------------- */}
-                <TextField className="searchField" id="standard-basic" label="Search name, skills or any keyword ..." variant="standard" />
+                <TextField className="searchField" id="standard-basic" label="Search key skills" variant="standard" />
                 <div className='vl'></div>
                 <LocationOnIcon className="icon"/>
                 {/* ---------Dropdown------------ */}
                 <FormControl className='locationDropdown' variant="standard" sx={{ m: 1, minWidth: 120 }}>
-                    <InputLabel id="demo-simple-select-standard-label">Age</InputLabel>
+                    <InputLabel id="demo-simple-select-standard-label">Preferred Location</InputLabel>
                     <Select
                     labelId="demo-simple-select-standard-label"
                     id="demo-simple-select-standard"

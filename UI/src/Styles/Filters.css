@@ -2,7 +2,7 @@
     height: auto;
     padding: 0 20px 0 20px;
     align-items: center;
-    margin-top: 100px;
+    margin-top: 90px;
 }
 
 .headerContainer {
@@ -15,16 +15,16 @@
 }
 
 .headerTitle {
-    font-size: 35px;
+    font-size: 24px;
     font-weight: 600;
 }
 
-.headerSubTitle {
+/* .headerSubTitle {
     font-size: 16px;
     margin-top: 8px;
     font-weight: 400px;
     color: #828282;
-}
+} */
 
 .fliters {
     padding: 8px 0px 8px 0px;

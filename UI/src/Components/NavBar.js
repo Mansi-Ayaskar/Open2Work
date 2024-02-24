@@ -12,7 +12,15 @@ const NavBar = () => {
   return (
     <div>
       <div className="navBar">
-        <h1 className="appName">Open2Work</h1>
+        <div className='navBarHeader'>
+            <div className='outerFlex'>
+                <div className='innerFlex'>
+                    <h1 className="appName">Open2Work</h1>
+                    <p className="tagLine">: Your Talent Search Simplified !</p>
+                </div>
+                <p className='headerSubTitle'>Dream, Create, Collaborate, Your next project Awaits !</p>
+            </div>
+        </div>
         <div className="rightNavbar">
           <button className="open2Work" onClick={goToProfile}>
             Are You Open2Work ?
