@@ -29,16 +29,17 @@ def index():
     msg = Message(
         'Hello',
         sender='adityadhamale2303@gmail.com',
-        recipients= ['karthikcpatel@gmail.com']
+        recipients=['karthikcpatel@gmail.com']
     )
     msg.body = 'Hello this is sample mail.'
     mail.send(msg)
     return 'Sent'
 
+
 mysql = MySQL(app)
 
 
-@app.route('/employees', methods=['GET'])
+@app.route('/getAllRegisteredEmployees', methods=['GET'])
 def get_employee_by_param():
     cursor = mysql.connection.cursor()
     options = request.args.to_dict()
@@ -81,7 +82,7 @@ def get_employee_by_param():
     return jsonify(employees)
 
 
-@app.route('/employees', methods=['POST'])
+@app.route('/registerEmployee', methods=['POST'])
 def create_employee():
     """
     Create a new employee.
@@ -99,7 +100,7 @@ def create_employee():
     return jsonify({'message': 'Employee created successfully'})
 
 
-@app.route('/employees/<string:email>', methods=['PUT'])
+@app.route('/updateEmployeeDetail/<string:email>', methods=['PUT'])
 def update_employee(email: str):
     """
     Update an existing employee.
@@ -128,7 +129,7 @@ def update_employee(email: str):
     return jsonify({'message': 'Employee updated successfully'})
 
 
-@app.route('/employees/<string:email>', methods=['DELETE'])
+@app.route('/deleteEmployeeDetail/<string:email>', methods=['DELETE'])
 def delete_employee(email: str):
     """
     Delete an employee.
@@ -141,4 +142,3 @@ def delete_employee(email: str):
 
 
 app.run(host='localhost', port=5000)
-
