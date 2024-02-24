@@ -94,7 +94,10 @@ export default function StickyHeadTable(props) {
                 return (
                   <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
                     {columns.map((column) => {
-                      const value = row[column.id];
+                      let value = row[column.id];
+                      if (Array.isArray(value)) {
+                        value = value.join(", ");
+                      }
                       return (
                         <StyledTableCell key={column.id} align={column.align}>
                           {column.format && typeof value === 'number'

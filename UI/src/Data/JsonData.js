@@ -7,6 +7,7 @@ const JsonData = [
         "preferredLocation": "Worcester",
         "age": 39,
         "gender": "male",
+        "yoe": 8,
         "skills": [
             "aute",
             "elit",
@@ -25,6 +26,7 @@ const JsonData = [
         "preferredLocation": "Mayfair",
         "age": 34,
         "gender": "female",
+        "yoe": 18,
         "skills": [
             "deserunt",
             "ut",
@@ -43,6 +45,7 @@ const JsonData = [
         "preferredLocation": "Waverly",
         "age": 38,
         "gender": "female",
+        "yoe": 6,
         "skills": [
             "minim",
             "sit",
@@ -61,6 +64,7 @@ const JsonData = [
         "preferredLocation": "Sunnyside",
         "age": 27,
         "gender": "male",
+        "yoe": 9,
         "skills": [
             "cillum",
             "culpa",
@@ -79,6 +83,7 @@ const JsonData = [
         "preferredLocation": "Konterra",
         "age": 34,
         "gender": "female",
+        "yoe": 10,
         "skills": [
             "enim",
             "aliqua",
@@ -97,6 +102,7 @@ const JsonData = [
         "preferredLocation": "Waukeenah",
         "age": 29,
         "gender": "female",
+        "yoe": 12,
         "skills": [
             "sit",
             "aliqua",
@@ -115,6 +121,7 @@ const JsonData = [
         "preferredLocation": "Spokane",
         "age": 22,
         "gender": "male",
+        "yoe": 14,
         "skills": [
             "fugiat",
             "laborum",
@@ -133,6 +140,7 @@ const JsonData = [
         "preferredLocation": "Berlin",
         "age": 21,
         "gender": "female",
+        "yoe": 11,
         "skills": [
             "ad",
             "pariatur",
@@ -151,6 +159,7 @@ const JsonData = [
         "preferredLocation": "Rehrersburg",
         "age": 21,
         "gender": "male",
+        "yoe": 6,
         "skills": [
             "aliqua",
             "laborum",
@@ -169,6 +178,7 @@ const JsonData = [
         "preferredLocation": "Malo",
         "age": 27,
         "gender": "female",
+        "yoe": 5,
         "skills": [
             "qui",
             "do",
@@ -187,6 +197,7 @@ const JsonData = [
         "preferredLocation": "Witmer",
         "age": 30,
         "gender": "female",
+        "yoe": 6,
         "skills": [
             "consectetur",
             "eu",
@@ -205,6 +216,7 @@ const JsonData = [
         "preferredLocation": "Accoville",
         "age": 40,
         "gender": "male",
+        "yoe": 13,
         "skills": [
             "quis",
             "sit",
@@ -223,6 +235,7 @@ const JsonData = [
         "preferredLocation": "Buxton",
         "age": 24,
         "gender": "male",
+        "yoe": 16,
         "skills": [
             "quis",
             "deserunt",
@@ -241,6 +254,7 @@ const JsonData = [
         "preferredLocation": "Hanover",
         "age": 35,
         "gender": "male",
+        "yoe": 14,
         "skills": [
             "sit",
             "consequat",
@@ -259,6 +273,7 @@ const JsonData = [
         "preferredLocation": "Unionville",
         "age": 39,
         "gender": "female",
+        "yoe": 5,
         "skills": [
             "consectetur",
             "cupidatat",
