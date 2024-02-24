@@ -2,28 +2,22 @@ import json
 from flask import Flask, jsonify, request
 from flask_mysqldb import MySQL
 from flask_mail import Mail, Message
+from config import Config
 
 app = Flask(__name__)
 
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'root'
-app.config['MYSQL_DB'] = 'semicolons'
+app.config.from_object(Config)
 
-mail = Mail(app)  # instantiate the mail class
-
-# configuration of mail
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = 'adityadhamale2303@gmail.com'
-app.config['MAIL_PASSWORD'] = 'nize zfub pcux wkki'
-app.config['MAIL_USE_TLS'] = False
-app.config['MAIL_USE_SSL'] = True
-
+mysql = MySQL(app)
 mail = Mail(app)
 
 
-# message object mapped to a particular URL ‘/’
+@app.route('/')
+def hello():
+
+    return "Hello Employees!"
+
+
 @app.route("/send_mail", methods=['POST'])
 def index():
     msg = Message(
@@ -34,9 +28,6 @@ def index():
     msg.body = 'Hello this is sample mail.'
     mail.send(msg)
     return 'Sent'
-
-
-mysql = MySQL(app)
 
 
 @app.route('/getAllRegisteredEmployees', methods=['GET'])
