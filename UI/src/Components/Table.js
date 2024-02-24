@@ -93,7 +93,7 @@ export default function StickyHeadTable() {
   return (
     <>
     <Paper className='tablePaperContainer'>
-      <TableContainer sx={{ maxHeight: 310 }}>
+      <TableContainer sx={{ maxHeight: 375 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead className='tableHead'>
             <TableRow>
