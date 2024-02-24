@@ -7,3 +7,8 @@ export const getRegisteredEmployees = async () => {
   );
   return await res.data;
 };
+
+export const registerEmployee = async (employeeInfo) => {
+  const res = await axiosClient.post('registerEmployee', employeeInfo);
+  return await res.data;
+};
