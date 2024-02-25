@@ -23,6 +23,11 @@ function Profile() {
     baselocation: '',
     preferredlocation: ''
   });
+
+  const goToDashboard = () => {
+    navigate('/');
+  };
+
   const handleChange = (event) => {
     setInputs((values) => ({
       ...values,
@@ -55,6 +60,7 @@ function Profile() {
         })
         .catch((e) => {
           console.log(e);
+          setIsUpdate(false);
         });
     }
   };
@@ -139,12 +145,22 @@ function Profile() {
                         [formData.id]: e.target.checked
                       }))
                     }
+                    sx={{
+                      color: '#fd5f07',
+                      '&.Mui-checked': {
+                        color: '#fd5f07'
+                      }
+                    }}
                   />
                   <InputLabel className="openToWorkLabel">
                     {formData.label}
                   </InputLabel>
                 </div>
               );
+            }
+            let limits = {};
+            if (formData.type == 'number') {
+              limits = { min: 0, max: 30 };
             }
             return (
               <TextField
@@ -161,6 +177,7 @@ function Profile() {
                 onBlur={() => {
                   handleOnBlur(formData.id);
                 }}
+                inputProps={{ ...limits }}
                 // error={formData.type === 'email' ? !isValidEmail : false}
                 // helperText={
                 //   formData.type === 'email'
@@ -172,7 +189,9 @@ function Profile() {
           })}
           <div className="buttonContainer">
             <input type="submit" className="submitButton" />
-            <button className="cancelButton">Cancel</button>
+            <button className="cancelButton" onClick={goToDashboard}>
+              Cancel
+            </button>
           </div>
         </form>
       </Box>

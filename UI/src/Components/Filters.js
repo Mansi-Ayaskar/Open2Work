@@ -32,10 +32,10 @@ const Filters = (props) => {
           label="Search key skills"
           variant="standard"
           onChange={handleChangeText}
-          sx={{
-            '& .MuiInputLabel-root': { fontSize: '14px' }, // Change label font size
-            '& .MuiInputBase-root': { height: '25px' } // Change input height
-          }}
+          //   sx={{
+          //     '& .MuiInputLabel-root': { fontSize: '14px' }, // Change label font size
+          //     '& .MuiInputBase-root': { height: '25px' } // Change input height
+          //   }}
         />
         <div className="vl"></div>
         <LocationOnIcon className="icon" />
@@ -45,25 +45,27 @@ const Filters = (props) => {
           variant="standard"
           sx={{ minWidth: 120 }}
         >
-          <InputLabel id="demo-simple-select-standard-label">Age</InputLabel>
+          <InputLabel id="demo-simple-select-standard-label">
+            Location
+          </InputLabel>
           <Select
             labelId="demo-simple-select-standard-label"
             id="demo-simple-select-standard"
             value={age}
             onChange={handleChange}
-            label="Age"
-            sx={{
-              '& .MuiInputLabel-root': { fontSize: '14px' }, // Change label font size
-              '& .MuiFormControl-root': { height: '25px' }, // Change select height
-              '& .MuiSelect-select': { fontSize: '16px' } // Change menu item font size (optional)
-            }}
+            label="Location"
+            // sx={{
+            //   '& .MuiInputLabel-root': { fontSize: '14px' }, // Change label font size
+            //   '& .MuiFormControl-root': { height: '25px' }, // Change select height
+            //   '& .MuiSelect-select': { fontSize: '16px' } // Change menu item font size (optional)
+            // }}
           >
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+            <MenuItem value={10}>Pune</MenuItem>
+            <MenuItem value={20}>Kochi</MenuItem>
+            <MenuItem value={30}>Mumbai</MenuItem>
           </Select>
         </FormControl>
         {/* ------------- Find Employees Button -------------------- */}
