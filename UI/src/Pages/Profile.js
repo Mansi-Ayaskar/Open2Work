@@ -18,6 +18,11 @@ function Profile() {
     baselocation: '',
     preferredlocation: ''
   });
+
+  const goToDashboard = () => {
+    navigate('/');
+  };
+
   const handleChange = (event) => {
     // if (event.target.name === 'email') {
     //   setIsValidEmail(event.target.value.includes('@persistent.com'));
@@ -94,12 +99,22 @@ function Profile() {
                         [formData.id]: e.target.checked
                       }))
                     }
+                    sx={{
+                      color: '#fd5f07',
+                      '&.Mui-checked': {
+                        color: '#fd5f07'
+                      }
+                    }}
                   />
                   <InputLabel className="openToWorkLabel">
                     {formData.label}
                   </InputLabel>
                 </div>
               );
+            }
+            var limits = {};
+            if (formData.type == 'number') {
+              limits = { min: 0, max: 30 };
             }
             return (
               <TextField
@@ -113,6 +128,7 @@ function Profile() {
                 value={inputs[formData.id] || ''}
                 onChange={handleChange}
                 style={{ marginTop: 20 }}
+                inputProps={{ ...limits }}
                 // error={formData.type === 'email' ? !isValidEmail : false}
                 // helperText={
                 //   formData.type === 'email'
@@ -124,7 +140,9 @@ function Profile() {
           })}
           <div className="buttonContainer">
             <input type="submit" className="submitButton" />
-            <button className="cancelButton">Cancel</button>
+            <button className="cancelButton" onClick={goToDashboard}>
+              Cancel
+            </button>
           </div>
         </form>
       </Box>
