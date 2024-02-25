@@ -4,7 +4,11 @@ import React, { Fragment, useState } from 'react';
 import { profileFormList } from '../helper/profile-data';
 import CustomSelect from '../Components/CustomSelect';
 import '../Styles/Profile.css';
-import { registerEmployee } from '../api/use-employee-api';
+import {
+  getRegisteredEmployeeDetail,
+  registerEmployee,
+  updateEmployee
+} from '../api/use-employee-api';
 import { useNavigate } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 // Get QueryClient from the context
@@ -12,6 +16,7 @@ function Profile() {
   // const [isValidEmail, setIsValidEmail] = useState(false);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const [isUpdate, setIsUpdate] = useState(false);
 
   const [inputs, setInputs] = useState({
     openToWork: true,
@@ -24,15 +29,40 @@ function Profile() {
   };
 
   const handleChange = (event) => {
-    // if (event.target.name === 'email') {
-    //   setIsValidEmail(event.target.value.includes('@persistent.com'));
-    // } else {
-    //   setIsValidEmail(false);
-    // }
     setInputs((values) => ({
       ...values,
       [event.target.name]: event.target.value
     }));
+  };
+
+  const handleOnBlur = (id) => {
+    console.log(id);
+    if (id == 'email') {
+      getRegisteredEmployeeDetail(inputs['email'])
+        .then((res) => {
+          console.log('res: ', res);
+          const data = res[0];
+          let tempOpenToWork = true;
+          if (data['open2work'] === 0) {
+            tempOpenToWork = false;
+          }
+          const finalInput = {
+            email: data['email'],
+            fullname: data['name'],
+            baselocation: data['location'],
+            preferredlocation: data['preferred_location'],
+            openToWork: tempOpenToWork,
+            skills: data['key_skills'],
+            experience: Number(data['yrs_exp'])
+          };
+          setInputs(finalInput);
+          setIsUpdate(true);
+        })
+        .catch((e) => {
+          console.log(e);
+          setIsUpdate(false);
+        });
+    }
   };
 
   const handleSubmit = (event) => {
@@ -44,19 +74,35 @@ function Profile() {
     if (inputs['openToWork']) {
       isOpenToWork = 1;
     }
-    registerEmployee({
-      email: inputs['email'],
-      name: inputs['fullname'],
-      location: inputs['baselocation'],
-      preferred_location: inputs['preferredlocation'],
-      open2work: isOpenToWork,
-      key_skills: inputs['skills'],
-      yrs_exp: Number(inputs['experience'])
-    }).then((res) => {
-      console.log('Res: ', res);
-      queryClient.invalidateQueries({ queryKey: ['employees'] });
-      navigate('/');
-    });
+    if (isUpdate) {
+      updateEmployee({
+        email: inputs['email'],
+        name: inputs['fullname'],
+        location: inputs['baselocation'],
+        preferred_location: inputs['preferredlocation'],
+        open2work: isOpenToWork,
+        key_skills: inputs['skills'],
+        yrs_exp: Number(inputs['experience'])
+      }).then((res) => {
+        console.log('Res: ', res);
+        queryClient.invalidateQueries({ queryKey: ['employees'] });
+        navigate('/');
+      });
+    } else {
+      registerEmployee({
+        email: inputs['email'],
+        name: inputs['fullname'],
+        location: inputs['baselocation'],
+        preferred_location: inputs['preferredlocation'],
+        open2work: isOpenToWork,
+        key_skills: inputs['skills'],
+        yrs_exp: Number(inputs['experience'])
+      }).then((res) => {
+        console.log('Res: ', res);
+        queryClient.invalidateQueries({ queryKey: ['employees'] });
+        navigate('/');
+      });
+    }
   };
 
   return (
@@ -112,7 +158,7 @@ function Profile() {
                 </div>
               );
             }
-            var limits = {};
+            let limits = {};
             if (formData.type == 'number') {
               limits = { min: 0, max: 30 };
             }
@@ -128,6 +174,9 @@ function Profile() {
                 value={inputs[formData.id] || ''}
                 onChange={handleChange}
                 style={{ marginTop: 20 }}
+                onBlur={() => {
+                  handleOnBlur(formData.id);
+                }}
                 inputProps={{ ...limits }}
                 // error={formData.type === 'email' ? !isValidEmail : false}
                 // helperText={
